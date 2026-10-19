@@ -1,0 +1,62 @@
+{
+	"geode": "5.11.2",
+	"gd": {
+		"win": "2.2081",
+		"android": "2.2081"
+	},
+	"version": "v0.1.0-alpha",
+	"id": "vinz.renderer",
+	"name": "Vinz Renderer (experimental)",
+	"developer": "Vinzplaing",
+	"description": "Renderer GPU eksperimental untuk Android (OpenGL ES 3.0 / 3.1) dan Windows: object statis di-bake ke buffer GPU dan di-cull di GPU.",
+	"tags": ["performance"],
+	"settings": {
+		"enabled": {
+			"type": "bool",
+			"name": "Renderer aktif",
+			"description": "Matiin kalau level kelihatan rusak. Perlu masuk ulang level.",
+			"default": true
+		},
+		"renderer-mode": {
+			"type": "string",
+			"name": "Mode renderer",
+			"description": "Auto = pilih sesuai GPU. ES 3.0 = culling di CPU. ES 3.1 = culling pakai compute shader + indirect draw (butuh GLES 3.1).",
+			"default": "Auto",
+			"one-of": ["Auto", "OpenGL ES 3.0 (CPU culling)", "OpenGL ES 3.1 (GPU culling)"]
+		},
+		"bake-decoration": {
+			"type": "bool",
+			"name": "Bake object dekorasi",
+			"default": true
+		},
+		"bake-solids": {
+			"type": "bool",
+			"name": "Bake block solid",
+			"default": true
+		},
+		"chunk-size": {
+			"type": "int",
+			"name": "Ukuran chunk (unit)",
+			"description": "Lebar potongan level untuk culling. Kecil = culling lebih presisi, tapi lebih banyak chunk.",
+			"default": 256,
+			"min": 64,
+			"max": 2048,
+			"control": { "input": true, "slider": true }
+		},
+		"cull-margin": {
+			"type": "int",
+			"name": "Margin culling (%)",
+			"description": "Tambahan area di luar layar yang tetap digambar biar gak ada pop-in.",
+			"default": 5,
+			"min": 0,
+			"max": 50,
+			"control": { "input": true, "slider": true }
+		},
+		"debug-overlay": {
+			"type": "bool",
+			"name": "Overlay debug",
+			"description": "Tampilkan info GL, mode, dan jumlah quad di pojok layar.",
+			"default": false
+		}
+	}
+}
